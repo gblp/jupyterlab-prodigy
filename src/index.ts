@@ -45,8 +45,12 @@ class ProdigyIFrameWidget extends Widget {
 
     this.iframe = document.createElement('iframe');
     this.iframe.id = 'iframe-' + this.id;
-    this.iframe.src = url;
-    this.iframe.setAttribute('baseURI', url);
+    this.iframe.src =
+      window.location.href
+        .split('/')
+        .slice(0, -1)
+        .join('/') + '/prodigy/';
+    this.iframe.setAttribute('baseURI', this.iframe.src);
     this.node.appendChild(this.iframe);
 
     this.url = url;
